@@ -1,7 +1,6 @@
 "use client";
 
 import { UserForm } from "@/components/form/userForm";
-import { UserList } from "@/components/list/userList";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,8 +9,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Navbar } from "@/components/navbar/NavBar";
-import { Plus } from "lucide-react";
+import { Plus, Users } from "lucide-react";
 import { useUsers } from "@/hooks/users";
+import { DataTable } from "@/components/table/data-table";
+import { createColumns } from "@/components/table/columns";
 
 export default function Home() {
   const {
@@ -48,13 +49,24 @@ export default function Home() {
             />
           </DialogContent>
         </Dialog>
-
-        <UserList
-          users={users}
-          isLoading={isLoading}
-          onEdit={handleEditUser}
-          onDelete={handleDeleteUser}
-        />
+        {/* DataTable with users data */}
+        {users.length === 0 ? (
+          <div className="flex min-h-[60vh] flex-col items-center justify-center text-center gap-2 text-muted-foreground">
+            <Users className="h-10 w-10 mb-2" />
+            <p className="text-lg font-medium text-foreground">
+              No users added yet
+            </p>
+            <p className="text-sm">
+              Click the <span className="font-semibold">+</span> button to add
+              your first user
+            </p>
+          </div>
+        ) : (
+          <DataTable
+            columns={createColumns(handleEditUser, handleDeleteUser)}
+            data={users}
+          />
+        )}
       </div>
 
       <Button

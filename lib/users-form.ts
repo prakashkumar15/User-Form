@@ -14,37 +14,43 @@ export const userFields: FieldConfig[] = [
     label: "First Name",
     type: "text",
     required: true,
+    placeholder: "John",
   },
   {
     name: "lastName",
     label: "Last Name",
     type: "text",
     required: true,
+    placeholder: "Doe",
   },
   {
     name: "phone",
     label: "Phone Number",
     type: "tel",
     required: true,
+    placeholder: "1234567890",
   },
   {
     name: "email",
     label: "Email Address",
     type: "email",
     required: true,
+    placeholder: "john.doe@example.com",
   },
 
-  // {
-  //   name: "address",
-  //   label: "Address",
-  //   type: "text",
-  //   required: true,
-  // },
+  {
+    name: "address",
+    label: "Address",
+    type: "text",
+    required: true,
+    placeholder: "123 Main St, Anytown, USA",
+  },
   // {
   //   name: "dateOfBirth",
   //   label: "Date of Birth",
   //   type: "date",
   //   required: true,
+  //   placeholder: "MM/DD/YYYY",
   // },
   // {
   //   name: "age",
@@ -63,6 +69,7 @@ export const userFields: FieldConfig[] = [
   //     { label: "United States", value: "us" },
   //     { label: "Canada", value: "ca" },
   //   ],
+  //   placeholder: "Select a country",
   //   required: true,
   // },
 ];
