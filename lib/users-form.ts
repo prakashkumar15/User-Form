@@ -1,27 +1,56 @@
-// user-form.config.ts
-export const userFields = [
+export type FieldConfig = {
+  name: string;
+  label: string;
+  placeholder?: string;
+  type?: "text" | "email" | "tel" | "date" | "number";
+  component?: "input" | "select";
+  options?: { label: string; value: string }[];
+  required?: boolean;
+};
+
+export const userFields: FieldConfig[] = [
   {
     name: "firstName",
     label: "First Name",
-    placeholder: "John",
     type: "text",
+    required: true,
   },
   {
     name: "lastName",
     label: "Last Name",
-    placeholder: "Doe",
     type: "text",
+    required: true,
   },
   {
     name: "phone",
     label: "Phone Number",
-    placeholder: "9876543210",
     type: "tel",
+    required: true,
   },
   {
     name: "email",
     label: "Email Address",
-    placeholder: "john@example.com",
     type: "email",
+    required: true,
   },
-] as const;
+  // {
+  //   name: "address",
+  //   label: "Address",
+  //   type: "text",
+  //   required: true,
+  // },
+  // {
+  //   name: "dateOfBirth",
+  //   label: "Date of Birth",
+  //   type: "date",
+  //   required: true,
+  // },
+  // {
+  //   name: "age",
+  //   label: "Age",
+  //   type: "number",
+  //   component: "input",
+  //   placeholder: "30",
+  //   required: true,
+  // },
+];

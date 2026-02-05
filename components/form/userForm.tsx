@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -13,8 +12,16 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "@/components/ui/date-picker";
 import { UserFormValues, userSchema } from "@/lib/user.schema";
 import { userFields } from "@/lib/users-form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 type Props = {
   defaultValues?: Partial<UserFormValues>;
@@ -60,12 +67,40 @@ export function UserForm({
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>{fieldConfig.label}</FieldLabel>
-                  <Input
-                    {...field}
-                    type={fieldConfig.type}
-                    placeholder={fieldConfig.placeholder}
-                    aria-invalid={fieldState.invalid}
-                  />
+
+                  {fieldConfig.component === "select" ? (
+                    <Select
+                      value={typeof field.value === "string" ? field.value : ""}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder={fieldConfig.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {fieldConfig.options?.map((opt) => (
+                          <SelectItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ) : fieldConfig.type === "date" ? (
+                    <DatePicker
+                      value={
+                        typeof field.value === "string" ? field.value : null
+                      }
+                      onChange={(val) => field.onChange(val ?? "")}
+                    />
+                  ) : (
+                    <Input
+                      {...field}
+                      value={typeof field.value === "string" ? field.value : ""}
+                      type={fieldConfig.type}
+                      placeholder={fieldConfig.placeholder}
+                      aria-invalid={fieldState.invalid}
+                    />
+                  )}
+
                   {fieldState.error && (
                     <FieldError errors={[fieldState.error]} />
                   )}
