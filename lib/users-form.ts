@@ -33,6 +33,7 @@ export const userFields: FieldConfig[] = [
     type: "email",
     required: true,
   },
+
   // {
   //   name: "address",
   //   label: "Address",
@@ -51,6 +52,17 @@ export const userFields: FieldConfig[] = [
   //   type: "number",
   //   component: "input",
   //   placeholder: "30",
+  //   required: true,
+  // },
+  // {
+  //   name: "country",
+  //   label: "Country",
+  //   type: "text",
+  //   component: "select",
+  //   options: [
+  //     { label: "United States", value: "us" },
+  //     { label: "Canada", value: "ca" },
+  //   ],
   //   required: true,
   // },
 ];
